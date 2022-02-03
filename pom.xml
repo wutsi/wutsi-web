@@ -24,6 +24,7 @@
     <jdk.version>11</jdk.version>
 
     <javax-validation.version>2.0.1.Final</javax-validation.version>
+    <jsoup.version>1.14.3</jsoup.version>
     <junit.version>5.8.2</junit.version>
     <kotlin.version>1.6.10</kotlin.version>
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
@@ -68,6 +69,12 @@
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-reflect</artifactId>
       <version>${kotlin.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>${jsoup.version}</version>
     </dependency>
 
     <dependency>

@@ -34,9 +34,9 @@
     <!-- Document Title
         ============================================= -->
     <title>Wutsi | Payment network and e-commerce marketplace</title>
-    <meta property="og:type" th:content="${type}"/>
-    <meta property="og:title" th:content="${title}"/>
-    <meta property="og:description" th:content="${description}"/>
+    <meta property="og:type" th:content="${type}" th:if="${type}"/>
+    <meta property="og:title" th:content="${title}" th:if="${title}"/>
+    <meta property="og:description" th:content="${description}" th:if="${description}"/>
     <meta property="og:image" th:content="${image}" th:if="${image}"/>
     <meta property="og:site_name" th:content="${website}" th:if="${website}"/>
 

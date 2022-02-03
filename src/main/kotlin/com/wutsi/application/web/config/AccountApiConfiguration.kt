@@ -1,6 +1,7 @@
 package com.wutsi.application.web.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.wutsi.application.web.service.FeignTenantIdRequestInterceptor
 import com.wutsi.application.web.service.WebTokenProvider
 import com.wutsi.platform.account.Environment.PRODUCTION
 import com.wutsi.platform.account.Environment.SANDBOX
@@ -17,6 +18,7 @@ import org.springframework.core.env.Profiles
 class AccountApiConfiguration(
     private val tokenProvider: WebTokenProvider,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
+    private val tenantIdRequestInterceptor: FeignTenantIdRequestInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
@@ -27,6 +29,7 @@ class AccountApiConfiguration(
             mapper = mapper,
             interceptors = listOf(
                 tracingRequestInterceptor,
+                tenantIdRequestInterceptor,
                 FeignAuthorizationRequestInterceptor(tokenProvider),
             )
         )
