@@ -1,6 +1,6 @@
 wutsi:
   application:
-    asset-url: https://prod-wutsi.s3.amazonaws.com/static/wutsi-web/assets
+    asset-url: https://prod-wutsi.s3.amazonaws.com/static/wutsi-web
   platform:
     security:
       api-key: "${API_KEY}"
