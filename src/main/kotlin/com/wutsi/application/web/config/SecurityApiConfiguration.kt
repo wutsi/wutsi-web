@@ -2,6 +2,7 @@ package com.wutsi.application.web.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
+import com.wutsi.platform.core.util.feign.Custom5XXErrorDecoder
 import com.wutsi.platform.security.Environment.PRODUCTION
 import com.wutsi.platform.security.Environment.SANDBOX
 import com.wutsi.platform.security.WutsiSecurityApi
@@ -24,7 +25,8 @@ public class SecurityApiConfiguration(
             mapper = mapper,
             interceptors = listOf(
                 tracingRequestInterceptor,
-            )
+            ),
+            errorDecoder = Custom5XXErrorDecoder()
         )
 
     private fun environment(): com.wutsi.platform.security.Environment =
