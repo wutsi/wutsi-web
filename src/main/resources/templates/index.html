@@ -7,9 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--IE Compatibility Meta-->
-    <meta name="author" content="zytheme"/>
+    <meta name="author" content="wutsi.com"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Multi-purpose Business html5 landing page">
     <link th:href="${assetUrl} + '/assets/images/favicon/favicon.ico'" rel="icon">
 
     <!-- Fonts
@@ -33,7 +32,10 @@
 
     <!-- Document Title
         ============================================= -->
-    <title>Wutsi | Payment network and e-commerce marketplace</title>
+    <title th:text="'Wutsi |' + ${title}">Wutsi | Payment network and e-commerce marketplace</title>
+    <meta name="description" th:content="${description}" th:if="${description}">
+
+    <meta property="wutsi:page_id" th:content="${pageId}" th:if="${pageId}"/>
     <meta property="og:type" th:content="${type}" th:if="${type}"/>
     <meta property="og:title" th:content="${title}" th:if="${title}"/>
     <meta property="og:description" th:content="${description}" th:if="${description}"/>
