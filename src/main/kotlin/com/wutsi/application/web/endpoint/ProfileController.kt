@@ -20,17 +20,15 @@ class ProfileController(
         val account = findAccount(id)
         addOpenGraph(account, model)
         model.addAttribute("account", account)
-        return "index"
+        return "profile"
     }
 
-    private fun addOpenGraph(account: Account, model: Model): String {
+    private fun addOpenGraph(account: Account, model: Model) {
         model.addAttribute("title", account.displayName)
         model.addAttribute("description", account.biography)
         model.addAttribute("image", account.pictureUrl)
         model.addAttribute("site_name", account.website)
         model.addAttribute("type", "profile")
-
-        return "index"
     }
 
     private fun findAccount(id: Long): Account =

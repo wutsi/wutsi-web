@@ -4,7 +4,6 @@ import com.wutsi.platform.core.WutsiApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @WutsiApplication
-// @WutsiBffApplication
 @SpringBootApplication
 class Application
 

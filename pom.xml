@@ -35,6 +35,7 @@
     <wutsi-account.version>1.0.33</wutsi-account.version>
     <wutsi-catalog.version>0.0.18</wutsi-catalog.version>
     <wutsi-security.version>0.0.17</wutsi-security.version>
+
   </properties>
 
   <dependencies>
