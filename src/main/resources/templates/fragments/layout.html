@@ -24,15 +24,14 @@
     <script th:src="${assetUrl} + '/assets/js/respond.min.js'"></script>
     <![endif]-->
 
-    <title th:text="'Wutsi |' + ${title}">Wutsi | Payment network and e-commerce marketplace</title>
+    <title th:text="${title} + ' | Wutsi'">Wutsi | Payment network and e-commerce marketplace</title>
     <meta name="description" th:content="${description}" th:if="${description}">
 
-    <meta property="wutsi:page_id" th:content="${pageId}" th:if="${pageId}"/>
+    <meta name="wutsi:page_id" th:content="${pageId}" th:if="${pageId}"/>
     <meta property="og:type" th:content="${type}" th:if="${type}"/>
     <meta property="og:title" th:content="${title}" th:if="${title}"/>
     <meta property="og:description" th:content="${description}" th:if="${description}"/>
     <meta property="og:image" th:content="${image}" th:if="${image}"/>
-    <meta property="og:site_name" th:content="${website}" th:if="${website}"/>
 
     <link th:href="${assetUrl} + '/assets/css/external.css'" rel="stylesheet">
     <link th:href="${assetUrl} + '/assets/css/bootstrap.min.css'" rel="stylesheet">
@@ -173,9 +172,9 @@
 <!-- CTA       -->
 <!-- ######### -->
 <div class="slide--action cta" th:fragment="download-cta">
-    <a class="btn-hover" target="__blank" href="">
+    <a class="btn-hover cta-ios" target="__blank" th:href="${appStoreUrl}" th:if="${appStoreUrl}">
         <img src="assets/images/appstore.png" alt="download appstore"></a>
-    <a class="btn-hover" target="__blank" href="https://play.google.com/store/apps/details?id=com.wutsi.wutsi_wallet">
+    <a class="btn-hover cta-android" target="__blank" th:href="${playStoreUrl}" th:if="${playStoreUrl}">
         <img src="assets/images/playstore.png" alt="download playstore"></a>
 </div>
 

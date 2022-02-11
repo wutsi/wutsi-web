@@ -36,5 +36,5 @@ class ProfileController(
         accountApi.getAccount(id).account
 
     private fun getQrCodeUrl(id: Long): String =
-        "/qrcode/account/$id"
+        "/qr-code/account/$id"
 }

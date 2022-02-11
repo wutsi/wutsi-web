@@ -19,7 +19,7 @@ import java.util.UUID
 import javax.imageio.ImageIO
 
 @Controller
-@RequestMapping("/qrcode")
+@RequestMapping("/qr-code")
 class QRCodeController(
     private val accountApi: WutsiAccountApi,
     private val qrApi: WutsiQrApi,

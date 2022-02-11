@@ -13,5 +13,13 @@ abstract class AbstractPageController {
     @ModelAttribute(name = "pageId")
     fun getPageId(): String = pageId()
 
+    @ModelAttribute(name = "playStoreUrl")
+    fun getPlayStoreUrl(): String =
+        "https://play.google.com/store/apps/details?id=com.wutsi.wutsi_wallet"
+
+    @ModelAttribute("appStoreUrl")
+    fun getAppStoreUrl(): String? =
+        null
+
     abstract fun pageId(): String
 }

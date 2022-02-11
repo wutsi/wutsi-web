@@ -28,7 +28,7 @@ class ProductController(
         model.addAttribute("title", product.title)
         model.addAttribute("description", product.summary)
         model.addAttribute("image", product.thumbnail?.url)
-        model.addAttribute("type", "product")
+        model.addAttribute("type", "website")
     }
 
     private fun findProduct(id: Long): Product =
