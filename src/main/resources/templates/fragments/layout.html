@@ -24,7 +24,7 @@
     <script th:src="${assetUrl} + '/assets/js/respond.min.js'"></script>
     <![endif]-->
 
-    <title th:text="${title} + ' | Wutsi'">Wutsi | Payment network and e-commerce marketplace</title>
+    <title th:text="${title} + ' | ' + ${tenant.name}">Wutsi | Payment network and e-commerce marketplace</title>
     <meta name="description" th:content="${description}" th:if="${description}">
 
     <meta name="wutsi:page_id" th:content="${pageId}" th:if="${pageId}"/>
@@ -160,9 +160,9 @@
 <!-- LOGO      -->
 <!-- ######### -->
 <div class="row" th:fragment="logo">
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="col-xs-12 col-sm-12 col-md-12" th:if="${tenantLogoUrl}">
         <div class="slide--logo mt-10 wow fadeInUp" data-wow-duration="1s">
-            <img height="100" src="assets/images/logo/logo-light.png" alt="logo hero">
+            <img height="50" th:src="${tenantLogoUrl}" alt="logo hero">
         </div>
     </div>
 </div>
@@ -172,10 +172,12 @@
 <!-- CTA       -->
 <!-- ######### -->
 <div class="slide--action cta" th:fragment="download-cta">
-    <a class="btn-hover cta-ios" target="__blank" th:href="${appStoreUrl}" th:if="${appStoreUrl}">
-        <img src="assets/images/appstore.png" alt="download appstore"></a>
-    <a class="btn-hover cta-android" target="__blank" th:href="${playStoreUrl}" th:if="${playStoreUrl}">
-        <img src="assets/images/playstore.png" alt="download playstore"></a>
+    <a class="btn-hover cta-android" target="__blank" th:href="${tenant.installAndroidUrl}"
+       th:if="${tenant.installAndroidUrl}">
+        <img th:src="${assetUrl} + '/assets/images/playstore.png'" alt="download playstore"></a>
+
+    <a class="btn-hover cta-ios" target="__blank" th:href="${tenant.installIOSUrl}" th:if="${tenant.installIOSUrl}">
+        <img th:src="${assetUrl} + '/assets/images/appstore.png" alt="download appstore"></a>
 </div>
 
 </body>
