@@ -5,8 +5,6 @@
 </head>
 <body>
 
-<div th:replace="fragments/layout :: header"></div>
-
 <section id="slider" class="section slider slider-2">
     <div class="slide--item bg-overlay bg-overlay-theme">
 
@@ -14,7 +12,7 @@
             <div th:replace="fragments/layout :: logo"></div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 pt-100 wow fadeInUp" data-wow-duration="1s">
+                <div class="col-xs-12 col-sm-6 col-md-6 pt-50 wow fadeInUp" data-wow-duration="1s">
                     <div class="main-content">
                         <img class="profile-picture" th:src="${account.pictureUrl}" th:if="${account.pictureUrl}"/>
 
