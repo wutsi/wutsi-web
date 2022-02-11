@@ -44,7 +44,7 @@ class QRCodeController(
         val resource = ByteArrayResource(imageBytes, IMAGE_PNG_VALUE)
 
         return ResponseEntity.ok()
-            .header(CONTENT_DISPOSITION, "attachment; filename=\"qrcode-${id}-${UUID.randomUUID()}.png\"")
+            .header(CONTENT_DISPOSITION, "attachment; filename=\"qrcode-$id-${UUID.randomUUID()}.png\"")
             .header(CACHE_CONTROL, "public, max-age=$ttl")
             .body(resource)
     }
