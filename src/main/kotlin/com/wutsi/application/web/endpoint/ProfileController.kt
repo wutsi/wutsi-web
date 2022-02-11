@@ -20,17 +20,21 @@ class ProfileController(
         val account = findAccount(id)
         addOpenGraph(account, model)
         model.addAttribute("account", account)
+        model.addAttribute("qrCodeUrl", getQrCodeUrl(id))
         return "profile"
     }
 
     private fun addOpenGraph(account: Account, model: Model) {
         model.addAttribute("title", account.displayName)
         model.addAttribute("description", account.biography)
-        model.addAttribute("image", account.pictureUrl)
+        model.addAttribute("image", account.pictureUrl ?: getQrCodeUrl(account.id))
         model.addAttribute("site_name", account.website)
         model.addAttribute("type", "profile")
     }
 
     private fun findAccount(id: Long): Account =
         accountApi.getAccount(id).account
+
+    private fun getQrCodeUrl(id: Long): String =
+        "/qrcode/account/$id"
 }

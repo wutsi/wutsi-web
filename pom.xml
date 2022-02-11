@@ -30,10 +30,12 @@
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
     <klint.version>0.43.2</klint.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+    <qrcode-kotlin.version>1.1.0</qrcode-kotlin.version>
 
     <wutsi-platform-core.version>0.0.97</wutsi-platform-core.version>
     <wutsi-account.version>1.0.33</wutsi-account.version>
     <wutsi-catalog.version>0.0.18</wutsi-catalog.version>
+    <wutsi-qr.version>0.0.7</wutsi-qr.version>
     <wutsi-security.version>0.0.17</wutsi-security.version>
 
   </properties>
@@ -55,11 +57,21 @@
       <version>${wutsi-account.version}</version>
     </dependency>
     <dependency>
+      <groupId>com.wutsi.platform.qr</groupId>
+      <artifactId>wutsi-qr-sdk-kotlin</artifactId>
+      <version>${wutsi-qr.version}</version>
+    </dependency>
+    <dependency>
       <groupId>com.wutsi.platform.security</groupId>
       <artifactId>wutsi-security-sdk-kotlin</artifactId>
       <version>${wutsi-security.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>io.github.g0dkar</groupId>
+      <artifactId>qrcode-kotlin</artifactId>
+      <version>1.1.0</version>
+    </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>

@@ -54,6 +54,7 @@
 
         .main-content .slide--bio {
             color: #0b0b0b;
+            text-align: center;
         }
 
         .main-content .download {
@@ -67,6 +68,14 @@
             border: 1px solid #808080;
             display: block;
             margin: -104px auto 0 auto;
+        }
+
+        .main-content img.qr-code {
+            width: 230px;
+            height: 230px;
+            border: 1px solid #808080;
+            margin: 10px auto;
+            display: block;
         }
     </style>
 </div>
@@ -141,7 +150,7 @@
 <!-- ######### -->
 <div class="row" th:fragment="logo">
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="slide--logo mt-100 hidden-xs wow fadeInUp" data-wow-duration="1s">
+        <div class="slide--logo mt-10 hidden-xs wow fadeInUp" data-wow-duration="1s">
             <img height="100" src="assets/images/logo/logo-light.png" alt="logo hero">
         </div>
     </div>

@@ -24,6 +24,8 @@
                         <div class="slide--bio" th:text="${account.biography}" th:if="${account.biography}">Summary
                         </div>
 
+                        <img class="qr-code" th:src="${qrCodeUrl}" th:if="${qrCodeUrl}"/>
+
                         <hr/>
                         <p class="download">Download the App to view the full profile</p>
                         <div th:replace="fragments/layout :: download-cta"></div>
