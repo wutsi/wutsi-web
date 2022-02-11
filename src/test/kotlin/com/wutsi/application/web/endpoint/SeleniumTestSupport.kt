@@ -32,10 +32,9 @@ abstract class SeleniumTestSupport {
         options.addArguments("--lang=en")
         if (java.lang.System.getProperty("headless") == "true") {
             options.addArguments("--headless")
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--no-sandbox")
+            options.addArguments("--disable-dev-shm-usage")
         }
-//        options.setCapability("resolution", "1920x1080")
         return options
     }
 
