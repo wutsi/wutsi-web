@@ -20,7 +20,7 @@ class TenantProvider(
         if (isLocal())
             service.getTenant(1L)
         else
-            service.getTenant(request.remoteHost)
+            service.getTenant(request.serverName)
 
     private fun isLocal(): Boolean =
         !isProd() && !isTest()
