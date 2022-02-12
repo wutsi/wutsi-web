@@ -29,7 +29,8 @@
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
     <klint.version>0.43.2</klint.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-    <selenium.version>3.141.59</selenium.version>
+    <qrcode-kotlin.version>2.0.0</qrcode-kotlin.version>
+    <selenium.version>4.1.2</selenium.version>
 
     <wutsi-platform-core.version>0.0.97</wutsi-platform-core.version>
     <wutsi-account.version>1.0.33</wutsi-account.version>
@@ -75,7 +76,7 @@
     <dependency>
       <groupId>io.github.g0dkar</groupId>
       <artifactId>qrcode-kotlin</artifactId>
-      <version>1.1.0</version>
+      <version>${qrcode-kotlin.version}</version>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>

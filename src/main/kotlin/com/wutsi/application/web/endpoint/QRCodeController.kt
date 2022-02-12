@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import java.io.ByteArrayOutputStream
 import java.util.UUID
-import javax.imageio.ImageIO
 
 @Controller
 @RequestMapping("/qr-code")
@@ -36,12 +35,9 @@ class QRCodeController(
             )
         ).token
 
-        val image = QRCode(data).render(margin = 30, cellSize = 30)
-        val imageBytes = ByteArrayOutputStream()
-            .also {
-                ImageIO.write(image, "PNG", it)
-            }.toByteArray()
-        val resource = ByteArrayResource(imageBytes, IMAGE_PNG_VALUE)
+        val image = ByteArrayOutputStream()
+        QRCode(data).render(margin = 30, cellSize = 30).writeImage(image)
+        val resource = ByteArrayResource(image.toByteArray(), IMAGE_PNG_VALUE)
 
         return ResponseEntity.ok()
             .header(CONTENT_DISPOSITION, "attachment; filename=\"qrcode-$id-${UUID.randomUUID()}.png\"")
