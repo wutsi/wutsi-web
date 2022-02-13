@@ -33,7 +33,7 @@
     <selenium.version>4.1.2</selenium.version>
 
     <wutsi-platform-core.version>0.0.97</wutsi-platform-core.version>
-    <wutsi-account.version>1.0.33</wutsi-account.version>
+    <wutsi-account.version>1.0.37</wutsi-account.version>
     <wutsi-catalog.version>0.0.18</wutsi-catalog.version>
     <wutsi-qr.version>0.0.7</wutsi-qr.version>
     <wutsi-security.version>0.0.17</wutsi-security.version>
