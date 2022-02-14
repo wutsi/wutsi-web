@@ -28,7 +28,7 @@ import kotlin.test.assertTrue
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 abstract class SeleniumTestSupport {
     @LocalServerPort
-    private val port: Int = 0
+    protected val port: Int = 0
 
     protected var url: String = ""
 

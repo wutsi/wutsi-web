@@ -7,11 +7,13 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
+import javax.servlet.http.HttpServletRequest
 
 @Controller
 @RequestMapping("/profile")
 class ProfileController(
     private val accountApi: WutsiAccountApi,
+    private val request: HttpServletRequest
 ) : AbstractPageController() {
     override fun pageId() = "page.profile"
 
@@ -35,6 +37,11 @@ class ProfileController(
     private fun findAccount(id: Long): Account =
         accountApi.getAccount(id).account
 
-    private fun getQrCodeUrl(id: Long): String =
-        "/qr-code/account/$id"
+    private fun getQrCodeUrl(id: Long): String {
+        val port = if (request.serverPort == 80 || request.serverPort == 443)
+            ""
+        else
+            ":${request.serverPort}"
+        return "${request.scheme}://${request.serverName}$port/qr-code/account/$id"
+    }
 }

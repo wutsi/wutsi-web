@@ -39,7 +39,11 @@ internal class ProfileControllerTest : SeleniumTestSupport() {
         assertElementAttribute("head meta[property='og:type']", "content", "profile")
         assertElementAttribute("head meta[property='og:title']", "content", account.displayName)
         assertElementAttribute("head meta[property='og:description']", "content", account.biography)
-        assertElementAttribute("head meta[property='og:image']", "content", "/qr-code/account/${account.id}")
+        assertElementAttribute(
+            "head meta[property='og:image']",
+            "content",
+            "http://localhost:$port/qr-code/account/${account.id}"
+        )
 
         assertElementText(".slide--headline h1", account.displayName!!)
         assertElementText(".slide--bio", account.biography!!)
