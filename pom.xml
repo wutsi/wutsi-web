@@ -32,7 +32,7 @@
     <qrcode-kotlin.version>2.0.0</qrcode-kotlin.version>
     <selenium.version>4.1.2</selenium.version>
 
-    <wutsi-platform-core.version>0.0.99</wutsi-platform-core.version>
+    <wutsi-platform-core.version>0.0.101</wutsi-platform-core.version>
     <wutsi-account.version>1.0.38</wutsi-account.version>
     <wutsi-catalog.version>0.0.18</wutsi-catalog.version>
     <wutsi-qr.version>0.0.7</wutsi-qr.version>

@@ -6,8 +6,8 @@ import feign.RequestTemplate
 import org.springframework.stereotype.Service
 
 @Service
-class FeignTenantIdRequestInterceptor : RequestInterceptor {
+class FeignTenantIdRequestInterceptor(private val tenantProvider: TenantProvider) : RequestInterceptor {
     override fun apply(template: RequestTemplate) {
-        template.header(TracingContext.HEADER_TENANT_ID, "1")
+        template.header(TracingContext.HEADER_TENANT_ID, tenantProvider.get().id.toString())
     }
 }
