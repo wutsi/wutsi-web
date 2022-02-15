@@ -23,7 +23,7 @@ class QRCodeController(
     private val accountApi: WutsiAccountApi,
     private val qrApi: WutsiQrApi,
 ) {
-    @GetMapping("/account/{id}")
+    @GetMapping("/account/{id}.png")
     fun account(@PathVariable id: Long): ResponseEntity<ByteArrayResource> {
         val account = findAccount(id)
         val ttl = 86400

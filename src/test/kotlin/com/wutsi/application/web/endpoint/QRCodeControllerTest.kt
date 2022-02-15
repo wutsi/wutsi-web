@@ -34,6 +34,6 @@ internal class QRCodeControllerTest : SeleniumTestSupport() {
         doReturn(EncodeQRCodeResponse(token = "xxxxxx")).whenever(qrApi).encode(any())
 
         // WHEN
-        navigate(url("qr-code/account/${account.id}"))
+        navigate(url("qr-code/account/${account.id}.png"))
     }
 }

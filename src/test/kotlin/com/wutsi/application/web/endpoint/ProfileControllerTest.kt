@@ -42,12 +42,12 @@ internal class ProfileControllerTest : SeleniumTestSupport() {
         assertElementAttribute(
             "head meta[property='og:image']",
             "content",
-            "http://localhost:$port/qr-code/account/${account.id}"
+            "http://localhost:$port/qr-code/account/${account.id}.png"
         )
 
         assertElementText(".slide--headline h1", account.displayName!!)
         assertElementText(".slide--bio", account.biography!!)
-        assertElementAttributeEndsWith("img.qr-code", "src", "/qr-code/account/${account.id}")
+        assertElementAttributeEndsWith("img.qr-code", "src", "/qr-code/account/${account.id}.png")
 
         assertElementAttribute(
             ".cta-android",

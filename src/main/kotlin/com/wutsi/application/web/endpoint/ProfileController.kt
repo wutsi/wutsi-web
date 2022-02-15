@@ -42,6 +42,6 @@ class ProfileController(
             ""
         else
             ":${request.serverPort}"
-        return "${request.scheme}://${request.serverName}$port/qr-code/account/$id"
+        return "${request.scheme}://${request.serverName}$port/qr-code/account/$id.png"
     }
 }
