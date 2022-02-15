@@ -8,6 +8,7 @@ import com.wutsi.platform.catalog.Environment.SANDBOX
 import com.wutsi.platform.catalog.WutsiCatalogApi
 import com.wutsi.platform.catalog.WutsiCatalogApiBuilder
 import com.wutsi.platform.core.security.feign.FeignAuthorizationRequestInterceptor
+import com.wutsi.platform.core.tracing.feign.FeignAcceptLanguageInterceptor
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
 import com.wutsi.platform.core.util.feign.Custom5XXErrorDecoder
 import org.springframework.context.annotation.Bean
@@ -20,6 +21,7 @@ class CatalogApiConfiguration(
     private val tokenProvider: WebTokenProvider,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
     private val tenantIdRequestInterceptor: FeignTenantIdRequestInterceptor,
+    private val acceptLanguageInterceptor: FeignAcceptLanguageInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
@@ -31,7 +33,8 @@ class CatalogApiConfiguration(
             interceptors = listOf(
                 tracingRequestInterceptor,
                 tenantIdRequestInterceptor,
-                FeignAuthorizationRequestInterceptor(tokenProvider)
+                FeignAuthorizationRequestInterceptor(tokenProvider),
+                acceptLanguageInterceptor,
             ),
             errorDecoder = Custom5XXErrorDecoder()
         )
