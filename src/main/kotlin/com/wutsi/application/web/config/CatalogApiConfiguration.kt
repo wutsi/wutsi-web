@@ -1,7 +1,7 @@
 package com.wutsi.application.web.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.wutsi.application.web.service.FeignAcceptLanguageInterceptor
+import com.wutsi.application.shared.service.FeignAcceptLanguageInterceptor
 import com.wutsi.application.web.service.FeignTenantIdRequestInterceptor
 import com.wutsi.application.web.service.WebTokenProvider
 import com.wutsi.platform.catalog.Environment.PRODUCTION
@@ -15,18 +15,18 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
 import org.springframework.core.env.Profiles
+import javax.servlet.http.HttpServletRequest
 
 @Configuration
 class CatalogApiConfiguration(
     private val tokenProvider: WebTokenProvider,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
     private val tenantIdRequestInterceptor: FeignTenantIdRequestInterceptor,
-    private val acceptLanguageInterceptor: FeignAcceptLanguageInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
     @Bean
-    fun catalogApi(): WutsiCatalogApi =
+    fun catalogApi(request: HttpServletRequest): WutsiCatalogApi =
         WutsiCatalogApiBuilder().build(
             env = environment(),
             mapper = mapper,
@@ -34,7 +34,7 @@ class CatalogApiConfiguration(
                 tracingRequestInterceptor,
                 tenantIdRequestInterceptor,
                 FeignAuthorizationRequestInterceptor(tokenProvider),
-                acceptLanguageInterceptor,
+                FeignAcceptLanguageInterceptor(request),
             ),
             errorDecoder = Custom5XXErrorDecoder()
         )

@@ -3,6 +3,10 @@ package com.wutsi.application.web.endpoint
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.platform.account.WutsiAccountApi
+import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.dto.Category
+import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.catalog.WutsiCatalogApi
 import com.wutsi.platform.catalog.dto.GetProductResponse
 import com.wutsi.platform.catalog.dto.PictureSummary
@@ -14,18 +18,17 @@ internal class ProductControllerTest : SeleniumTestSupport() {
     @MockBean
     private lateinit var catalogApi: WutsiCatalogApi
 
+    @MockBean
+    private lateinit var accountApi: WutsiAccountApi
+
     @Test
     fun `product profile`() {
         // GIVEN
-        val product = Product(
-            id = 1,
-            title = "39 Carat neckless",
-            summary = "This is a sample description of a user",
-            thumbnail = PictureSummary(
-                url = "https://st2.depositphotos.com/1001030/12469/i/950/depositphotos_124693804-stock-photo-afro-american-man-posing-in.jpg"
-            )
-        )
+        val product = createProduct()
         doReturn(GetProductResponse(product)).whenever(catalogApi).getProduct(any())
+
+        val account = createAccount()
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         // WHEN
         navigate(url("product?id=${product.id}"))
@@ -33,12 +36,18 @@ internal class ProductControllerTest : SeleniumTestSupport() {
         // THEN
         assertCurrentPageIs("page.product")
 
+        // OpenGraph
         assertElementAttribute("head title", "text", "${product.title} | Wutsi")
         assertElementAttribute("head meta[name='description']", "content", product.summary)
-
         assertElementAttribute("head title", "text", "${product.title} | Wutsi")
         assertElementAttribute("head meta[name='description']", "content", product.summary)
         assertElementAttribute("head meta[property='og:type']", "content", "website")
+
+        // Content
+        assertElementText(".slide--headline h1", product.title)
+        assertElementText(".slide--bio", product.summary!!)
+        assertElementText(".product-price", "150,000 FCFA")
+        assertElementAttribute(".product-picture", "src", product.thumbnail!!.url)
 
         assertElementAttribute(
             ".cta-android",
@@ -47,4 +56,31 @@ internal class ProductControllerTest : SeleniumTestSupport() {
         )
         assertElementNotPresent(".cta-ios")
     }
+
+    private fun createAccount() = Account(
+        id = 1,
+        displayName = "Ray Sponsible",
+        biography = "This is a sample biography of a user",
+        country = "CM",
+        language = "en",
+        pictureUrl = "https://st2.depositphotos.com/1001030/12469/i/950/depositphotos_124693804-stock-photo-afro-american-man-posing-in.jpg",
+        business = true,
+        category = Category(
+            id = 100,
+            title = "Writer"
+        )
+    )
+
+    private fun createProduct() = Product(
+        id = 1,
+        title = "39 Carat Neckless",
+        summary = "Steal her heart!",
+        thumbnail = PictureSummary(
+            url = "https://www.volusion.com/blog/content/images/2021/07/Product-Photos.jpg"
+        ),
+        price = 150000.0,
+        comparablePrice = 170000.0,
+        description = "This is a long description",
+        currency = "XAF"
+    )
 }

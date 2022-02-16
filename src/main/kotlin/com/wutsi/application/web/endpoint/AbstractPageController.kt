@@ -1,6 +1,6 @@
 package com.wutsi.application.web.endpoint
 
-import com.wutsi.application.web.service.TenantProvider
+import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.platform.tenant.dto.Tenant
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value

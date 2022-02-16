@@ -15,31 +15,33 @@
                 <div class="col-xs-12 col-sm-6 col-md-6 pt-50 wow fadeInUp" data-wow-duration="1s">
                     <div class="main-content">
                         <img class="profile-picture" th:src="${account.pictureUrl}" th:if="${account.pictureUrl}"/>
-                        <div class="slide--headline">
-                            <h1 th:text="${account.displayName}">Ray Sponsible</h1>
-                        </div>
-                        <div class="slide--category" th:text="${account.category.title}" th:if="${account.category}">
-                        </div>
-                        <div class="slide--bio" th:text="${account.biography}" th:if="${account.biography}"></div>
 
-                        <img class="qr-code" th:src="${qrCodeUrl}" th:if="${qrCodeUrl}"/>
+                        <div class="slide--headline">
+                            <h1 th:text="${product.title}">Product Tyile</h1>
+                        </div>
+                        <img class="product-picture" th:src="${product.thumbnail.url}" th:if="${product.thumbnail}"/>
+
+                        <div class="slide--bio" th:text="${product.summary}" th:if="${product.summary}"></div>
+
+                        <hr/>
+                        <div class="product-price" th:if="${product.price}" th:text="${product.price.text}"></div>
 
                         <hr/>
                         <p class="download">Download the App to view the full profile</p>
                         <div th:replace="fragments/layout :: download-cta"></div>
+
+                        <!--
+                        <div class="slide--holder">
+                            <img class="img-responsive pull-right" decoding="async" src="assets/images/mockup/mockup-1.png"
+                                 alt="screens">
+                        </div>
+                        -->
                     </div>
-                    <!--
-                    <div class="slide--holder">
-                        <img class="img-responsive pull-right" decoding="async" src="assets/images/mockup/mockup-1.png"
-                             alt="screens">
-                    </div>
-                    -->
+                    <!-- .row end -->
                 </div>
-                <!-- .row end -->
+                <!-- .container end -->
             </div>
-            <!-- .container end -->
-        </div>
-        <!-- .slide-item end -->
+            <!-- .slide-item end -->
 </section>
 
 <div th:replace="fragments/layout :: footer"></div>

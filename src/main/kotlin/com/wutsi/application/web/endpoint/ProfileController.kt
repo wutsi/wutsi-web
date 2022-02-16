@@ -1,5 +1,6 @@
 package com.wutsi.application.web.endpoint
 
+import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.qr.WutsiQrApi
@@ -23,15 +24,17 @@ import javax.servlet.http.HttpServletRequest
 class ProfileController(
     private val accountApi: WutsiAccountApi,
     private val qrApi: WutsiQrApi,
-    private val request: HttpServletRequest
+    private val request: HttpServletRequest,
+    private val sharedUIMapper: SharedUIMapper,
 ) : AbstractPageController() {
     override fun pageId() = "page.profile"
 
     @GetMapping
     fun index(@RequestParam id: Long, model: Model): String {
         val account = findAccount(id)
+        val profile = sharedUIMapper.toAccountModel(account)
         addOpenGraph(account, model)
-        model.addAttribute("account", account)
+        model.addAttribute("account", profile)
         model.addAttribute("qrCodeUrl", getQrCodeUrl(id))
         return "profile"
     }

@@ -1,5 +1,9 @@
 package com.wutsi.application.web.endpoint
 
+import com.wutsi.application.shared.service.SharedUIMapper
+import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.platform.account.WutsiAccountApi
+import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.catalog.WutsiCatalogApi
 import com.wutsi.platform.catalog.dto.Product
 import org.springframework.stereotype.Controller
@@ -12,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam
 @RequestMapping("/product")
 class ProductController(
     private val catalogApi: WutsiCatalogApi,
+    private val accountApi: WutsiAccountApi,
+    private val sharedUIMapper: SharedUIMapper,
+    private val tenantProvider: TenantProvider
 ) : AbstractPageController() {
     override fun pageId() = "page.product"
 
@@ -19,9 +26,14 @@ class ProductController(
     fun index(@RequestParam id: Long, model: Model): String {
         val product = findProduct(id)
         addOpenGraph(product, model)
-        model.addAttribute("product", product)
 
-        return "index"
+        val tenant = tenantProvider.get()
+        val productModel = sharedUIMapper.toProductModel(product, tenant)
+        val accountModel = sharedUIMapper.toAccountModel(findAccount(product.accountId))
+        model.addAttribute("product", productModel)
+        model.addAttribute("account", accountModel)
+
+        return "product"
     }
 
     private fun addOpenGraph(product: Product, model: Model) {
@@ -30,6 +42,9 @@ class ProductController(
         model.addAttribute("image", product.thumbnail?.url)
         model.addAttribute("type", "website")
     }
+
+    private fun findAccount(id: Long): Account =
+        accountApi.getAccount(id).account
 
     private fun findProduct(id: Long): Product =
         catalogApi.getProduct(id).product
