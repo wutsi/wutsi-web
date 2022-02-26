@@ -29,7 +29,7 @@
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
     <klint.version>0.43.2</klint.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-    <qrcode-kotlin.version>2.0.0</qrcode-kotlin.version>
+    <qrcode-kotlin.version>2.0.1</qrcode-kotlin.version>
     <selenium.version>4.1.2</selenium.version>
 
     <wutsi-platform-core.version>0.0.101</wutsi-platform-core.version>
