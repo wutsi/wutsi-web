@@ -11,10 +11,6 @@ import com.wutsi.platform.qr.WutsiQrApi
 import com.wutsi.platform.qr.dto.EncodeQRCodeResponse
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.mock.mockito.MockBean
-import java.net.HttpURLConnection
-import java.net.URL
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 internal class ProfileControllerTest : SeleniumTestSupport() {
     @MockBean
@@ -28,6 +24,8 @@ internal class ProfileControllerTest : SeleniumTestSupport() {
         // GIVEN
         val account = createAccount()
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        doReturn(EncodeQRCodeResponse("111-222-333")).whenever(qrApi).encode(any())
 
         // WHEN
         navigate(url("profile?id=${account.id}"))
@@ -45,14 +43,14 @@ internal class ProfileControllerTest : SeleniumTestSupport() {
         assertElementAttribute(
             "head meta[property='og:image']",
             "content",
-            "http://localhost:$port/profile/qr-code/${account.id}.png"
+            "https://wutsi-qr-server-test.herokuapp.com/image/111-222-333.png"
         )
 
         // Content
         assertElementText(".slide--headline h1", account.displayName!!)
         assertElementText(".slide--bio", account.biography!!)
         assertElementText(".slide--category", account.category!!.title)
-        assertElementAttributeEndsWith("img.qr-code", "src", "/profile/qr-code/${account.id}.png")
+        assertElementAttribute("img.qr-code", "src", "https://wutsi-qr-server-test.herokuapp.com/image/111-222-333.png")
 
         assertElementAttribute(
             ".cta-android",
@@ -60,24 +58,6 @@ internal class ProfileControllerTest : SeleniumTestSupport() {
             "https://play.google.com/store/apps/details?id=com.wutsi.wutsi_wallet"
         )
         assertElementNotPresent(".cta-ios")
-    }
-
-    @Test
-    fun `qr-code`() {
-        // GIVEN
-        val account = createAccount()
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        doReturn(EncodeQRCodeResponse(token = "xxxxxx")).whenever(qrApi).encode(any())
-
-        // WHEN
-        val cnn = URL("http://localhost:$port/profile/qr-code/${account.id}.png").openConnection()
-        try {
-            assertTrue(cnn.getHeaderField("Content-Length").toLong() > 0)
-            assertEquals("image/png", cnn.getHeaderField("Content-Type"))
-        } finally {
-            (cnn as HttpURLConnection).disconnect()
-        }
     }
 
     private fun createAccount() = Account(
