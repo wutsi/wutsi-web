@@ -4,6 +4,11 @@ wutsi:
   platform:
     security:
       api-key: "${API_KEY}"
+    image:
+      type: image-kit
+      image-kit:
+        origin-url: "https://s3.amazonaws.com/prod-wutsi"
+        endpoint-url: "https://ik.imagekit.io/toifevuwjn"
     stream:
       type: rabbitmq
       rabbitmq:

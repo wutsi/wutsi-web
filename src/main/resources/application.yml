@@ -39,7 +39,13 @@ wutsi:
     name: wutsi-web
     server-url: http://localhost:${server.port}
     asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-web
+
   platform:
+    image:
+      type: image-kit
+      image-kit:
+        origin-url: "https://s3.amazonaws.com/int-wutsi"
+        endpoint-url: "https://ik.imagekit.io/cx8qxsgz4d"
     security:
       type: none
       api-key: "880ca844-847f-11ec-9c50-0a9080314eb7"
@@ -47,7 +53,6 @@ wutsi:
       client-id: ${wutsi.application.name}
       device-id-provider:
         type: cookie
-
     stream:
       name: ${wutsi.application.name}
       type: local

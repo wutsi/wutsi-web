@@ -10,6 +10,9 @@ import com.wutsi.ecommerce.catalog.WutsiCatalogApi
 import com.wutsi.ecommerce.catalog.dto.Product
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.core.image.Dimension
+import com.wutsi.platform.core.image.ImageService
+import com.wutsi.platform.core.image.Transformation
 import com.wutsi.platform.core.tracing.TracingContext
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
@@ -29,7 +32,8 @@ class ProductController(
     private val tenantProvider: TenantProvider,
     private val trackingApi: WutsiTrackingApi,
     private val tracingContext: TracingContext,
-    private val httpRequest: HttpServletRequest
+    private val httpRequest: HttpServletRequest,
+    private val imageService: ImageService,
 ) : AbstractPageController() {
     companion object {
         const val PAGE_ID = "page.Product"
@@ -92,9 +96,22 @@ class ProductController(
     private fun addOpenGraph(product: Product, model: Model) {
         model.addAttribute("title", product.title)
         model.addAttribute("description", product.summary)
-        model.addAttribute("image", product.thumbnail?.url)
+        model.addAttribute("image", product.thumbnail?.url?.let { openGraphImage(it) })
         model.addAttribute("type", "website")
     }
+
+    /**
+     * Generate open-graph image following commons specification. See https://kaydee.net/blog/open-graph-image
+     *  - Aspect ration: 16:9
+     *  - Dimension: 1200x630
+     */
+    private fun openGraphImage(url: String): String =
+        imageService.transform(
+            url = url,
+            transformation = Transformation(
+                dimension = Dimension(height = 630)
+            )
+        )
 
     private fun findAccount(id: Long): Account =
         accountApi.getAccount(id).account

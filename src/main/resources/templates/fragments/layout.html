@@ -7,11 +7,11 @@
 <!-- ################# -->
 <div th:fragment="head" th:remove="tag">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <!--IE Compatibility Meta-->
-    <meta name="author" content="wutsi.com"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link th:href="${assetUrl} + '/assets/images/favicon/favicon.ico'" rel="icon">
+    <meta content="wutsi.com" name="author"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <link rel="icon" th:href="${assetUrl} + '/assets/images/favicon/favicon.ico'">
 
     <link
         href='http://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i,800,800'
@@ -33,9 +33,9 @@
     <meta property="og:description" th:content="${description}" th:if="${description}"/>
     <meta property="og:image" th:content="${image}" th:if="${image}"/>
 
-    <link th:href="${assetUrl} + '/assets/css/external.css'" rel="stylesheet">
-    <link th:href="${assetUrl} + '/assets/css/bootstrap.min.css'" rel="stylesheet">
-    <link th:href="${assetUrl} + '/assets/css/style.css'" rel="stylesheet">
+    <link rel="stylesheet" th:href="${assetUrl} + '/assets/css/external.css'">
+    <link rel="stylesheet" th:href="${assetUrl} + '/assets/css/bootstrap.min.css'">
+    <link rel="stylesheet" th:href="${assetUrl} + '/assets/css/style.css'">
 
     <style>
         .slider .slide--category {
@@ -110,6 +110,7 @@
             display: block;
             margin: 20px auto;
             max-width: 100%;
+            max-height: 300px;
         }
 
         .main-content .cta {
@@ -122,20 +123,20 @@
 <!-- ######### -->
 <!-- HEADER    -->
 <!-- ######### -->
-<header id="navbar-spy" class="header header-1 header-transparent header-bordered header-fixed">
-    <nav id="primary-menu" class="navbar navbar-fixed-top">
+<header class="header header-1 header-transparent header-bordered header-fixed" id="navbar-spy">
+    <nav class="navbar navbar-fixed-top" id="primary-menu">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#navbar-collapse-1" aria-expanded="false">
+                <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar-collapse-1"
+                        data-toggle="collapse" type="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="logo" href="index.html">
-                    <img height="50" class="logo-dark" src="assets/images/logo/logo-dark.png" alt="appy Logo">
-                    <img height="50" class="logo-light" src="assets/images/logo/logo-light.png" alt="appy Logo">
+                    <img alt="appy Logo" class="logo-dark" height="50" src="assets/images/logo/logo-dark.png">
+                    <img alt="appy Logo" class="logo-light" height="50" src="assets/images/logo/logo-light.png">
                 </a>
             </div>
             <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
@@ -189,7 +190,7 @@
 <div class="row" th:fragment="logo">
     <div class="col-xs-12 col-sm-12 col-md-12" th:if="${tenantLogoUrl}">
         <div class="slide--logo mt-10 wow fadeInUp" data-wow-duration="1s">
-            <img height="50" th:src="${tenantLogoUrl}" alt="logo hero">
+            <img alt="logo hero" height="50" th:src="${tenantLogoUrl}">
         </div>
     </div>
 </div>
@@ -201,10 +202,10 @@
 <div class="slide--action cta" th:fragment="download-cta">
     <a class="btn-hover cta-android" target="__blank" th:href="${tenant.installAndroidUrl}"
        th:if="${tenant.installAndroidUrl}">
-        <img th:src="${assetUrl} + '/assets/images/playstore.png'" alt="download playstore"></a>
+        <img alt="download playstore" th:src="${assetUrl} + '/assets/images/playstore.png'"></a>
 
     <a class="btn-hover cta-ios" target="__blank" th:href="${tenant.installIOSUrl}" th:if="${tenant.installIOSUrl}">
-        <img th:src="${assetUrl} + '/assets/images/appstore.png" alt="download appstore"></a>
+        <img alt="download appstore" th:src="${assetUrl} + '/assets/images/appstore.png"></a>
 </div>
 
 </body>
