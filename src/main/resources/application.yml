@@ -45,12 +45,12 @@ wutsi:
       api-key: "880ca844-847f-11ec-9c50-0a9080314eb7"
     tracing:
       client-id: ${wutsi.application.name}
+      device-id-provider:
+        type: cookie
+
     stream:
       name: ${wutsi.application.name}
       type: local
-      subscriptions:
-        - wutsi-tenant
-
 logging:
   level:
     root: INFO
