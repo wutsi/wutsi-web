@@ -26,6 +26,10 @@
                         <hr/>
                         <div class="product-price" th:if="${product.price}" th:text="${product.price.text}"></div>
 
+                        <!-- Add this -->
+                        <hr/>
+                        <div class="addthis_inline_share_toolbox_r24n"></div>
+
                         <hr/>
                         <p class="download">Download the App to view the full profile</p>
                         <div th:replace="fragments/layout :: download-cta"></div>
@@ -45,5 +49,20 @@
 </section>
 
 <div th:replace="fragments/layout :: footer"></div>
+<script id="addthis-callback" th:if="${shareUrl}" th:inline="javascript">
+    /*<![CDATA[*/
+
+    function addthis_share(evt){
+        console.log('on_addthis_share', evt);
+
+        const url = /*[[${shareUrl}]]*/ '';
+        jQuery.get(url);
+    }
+
+    addthis.addEventListener('addthis.menu.share', addthis_share);
+
+    /*]]>*/
+</script>
 
 </body>
+</html>

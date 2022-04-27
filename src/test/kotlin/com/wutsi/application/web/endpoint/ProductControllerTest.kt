@@ -70,6 +70,15 @@ internal class ProductControllerTest : SeleniumTestSupport() {
         )
         assertElementNotPresent(".cta-ios")
 
+        // Addthis
+        assertElementAttribute(
+            "#addthis-script",
+            "src",
+            "http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b8d2e6485ca52bd"
+        )
+        assertElementPresent("#addthis-callback")
+        assertElementPresent(".addthis_inline_share_toolbox_r24n")
+
         val req = argumentCaptor<PushTrackRequest>()
         verify(trackingApi, times(2)).push(req.capture())
 

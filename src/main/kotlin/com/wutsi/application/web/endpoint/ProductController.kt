@@ -50,15 +50,24 @@ class ProductController(
         val tenant = tenantProvider.get()
         val productModel = sharedUIMapper.toProductModel(product, tenant)
         val accountModel = sharedUIMapper.toAccountModel(findAccount(product.accountId))
+        val correlationId = UUID.randomUUID().toString()
+
         model.addAttribute("product", productModel)
         model.addAttribute("account", accountModel)
-
-        track(product)
+        model.addAttribute("correlationId", correlationId)
+        model.addAttribute("shareUrl", "/product/on-share?id=$id&correlation-id=$correlationId")
+        track(product, correlationId)
         return "product"
     }
 
-    private fun track(product: Product) {
-        val correlationId = UUID.randomUUID().toString()
+    @GetMapping("/on-share")
+    fun onShare(@RequestParam id: Long, @RequestParam(name = "correlation-id") correlationId: String): String {
+        val product: Product = findProduct(id)
+        track(correlationId, EventType.SHARE, product)
+        return "product-share"
+    }
+
+    private fun track(product: Product, correlationId: String) {
         track(correlationId, EventType.LOAD)
         track(correlationId, EventType.VIEW, product)
     }
