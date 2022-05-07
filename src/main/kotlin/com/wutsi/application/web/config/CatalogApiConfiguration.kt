@@ -37,7 +37,8 @@ class CatalogApiConfiguration(
             errorDecoder = Custom5XXErrorDecoder()
         )
 
-    private fun environment(): com.wutsi.ecommerce.catalog.Environment =
+    @Bean("CatalogEnvironment")
+    fun environment(): com.wutsi.ecommerce.catalog.Environment =
         if (env.acceptsProfiles(Profiles.of("prod")))
             com.wutsi.ecommerce.catalog.Environment.PRODUCTION
         else
