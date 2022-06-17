@@ -181,4 +181,13 @@ abstract class SeleniumTestSupport {
         val select = Select(driver.findElement(by))
         select.selectByIndex(index)
     }
+
+    protected fun assertAppStoreLinksPresent() {
+        assertElementAttribute(
+            ".cta-android",
+            "href",
+            "https://play.google.com/store/apps/details?id=com.wutsi.wutsi_wallet"
+        )
+        assertElementNotPresent(".cta-ios")
+    }
 }

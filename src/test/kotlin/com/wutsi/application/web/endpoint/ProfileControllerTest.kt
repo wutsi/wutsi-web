@@ -20,7 +20,7 @@ internal class ProfileControllerTest : SeleniumTestSupport() {
     private lateinit var qrApi: WutsiQrApi
 
     @Test
-    fun `user profile`() {
+    fun account() {
         // GIVEN
         val account = createAccount()
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
@@ -46,18 +46,7 @@ internal class ProfileControllerTest : SeleniumTestSupport() {
             "https://wutsi-qr-server-test.herokuapp.com/image/111-222-333.png"
         )
 
-        // Content
-        assertElementText(".slide--headline h1", account.displayName!!)
-        assertElementText(".slide--bio", account.biography!!)
-        assertElementText(".slide--category", account.category!!.title)
-        assertElementAttribute("img.qr-code", "src", "https://wutsi-qr-server-test.herokuapp.com/image/111-222-333.png")
-
-        assertElementAttribute(
-            ".cta-android",
-            "href",
-            "https://play.google.com/store/apps/details?id=com.wutsi.wutsi_wallet"
-        )
-        assertElementNotPresent(".cta-ios")
+        assertAppStoreLinksPresent()
     }
 
     private fun createAccount() = Account(
