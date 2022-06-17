@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 pt-50 wow fadeInUp" data-wow-duration="1s">
                     <div class="main-content">
-                        <p class="download">Download the App</p>
+                        <p class="download" th:text="${downloadText}" th:if="${downloadText}">Download the App</p>
                         <div th:replace="fragments/layout :: download-cta"></div>
                     </div>
                 </div>

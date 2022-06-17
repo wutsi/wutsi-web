@@ -15,6 +15,7 @@ class OrderController : AbstractPageController() {
     @GetMapping
     fun index(@RequestParam id: String, model: Model): String {
         addOpenGraph(id, model)
+        model.addAttribute("downloadText", "Install the App to view the Order details")
         return "default"
     }
 

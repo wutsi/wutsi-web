@@ -28,6 +28,7 @@ class ProductController(
     fun index(@RequestParam id: Long, model: Model): String {
         try {
             val product: Product = findProduct(id)
+            model.addAttribute("downloadText", "Install the App to view the Product details")
             addOpenGraph(product, model)
         } catch (ex: Exception) {
             LOGGER.warn("Unexpected error while loading Order#$id", ex)

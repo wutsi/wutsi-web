@@ -25,6 +25,7 @@ class ProfileController(
     fun index(@RequestParam id: Long, model: Model): String {
         try {
             val account = findAccount(id)
+            model.addAttribute("downloadText", "Install the App to view the user's profile")
             addOpenGraph(account, model)
         } catch (ex: Exception) {
             LOGGER.warn("Unexpected error while loading Account$id", ex)
