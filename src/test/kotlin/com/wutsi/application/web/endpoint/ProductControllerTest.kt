@@ -40,7 +40,6 @@ internal class ProductControllerTest : SeleniumTestSupport() {
         // OpenGraph
         assertElementAttribute("head title", "text", "${product.title} | Wutsi")
         assertElementAttribute("head meta[name='description']", "content", product.summary)
-        assertElementAttribute("head title", "text", "${product.title} | Wutsi")
         assertElementAttribute("head meta[property='og:title']", "content", product.title)
         assertElementAttribute("head meta[property='og:description']", "content", product.summary)
         assertElementAttribute("head meta[property='og:type']", "content", "website")

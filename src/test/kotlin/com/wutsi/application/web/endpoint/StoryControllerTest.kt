@@ -6,7 +6,6 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.news.downstream.blog.dto.GetStoryResponse
 import com.wutsi.application.news.downstream.blog.dto.StoryDto
 import com.wutsi.application.web.downstream.blog.client.WutsiBlogApi
-import com.wutsi.platform.account.WutsiAccountApi
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.mock.mockito.MockBean
 
@@ -14,11 +13,8 @@ internal class StoryControllerTest : SeleniumTestSupport() {
     @MockBean
     private lateinit var blogApi: WutsiBlogApi
 
-    @MockBean
-    private lateinit var accountApi: WutsiAccountApi
-
     @Test
-    fun product() {
+    fun read() {
         // GIVEN
         val story = createStory()
         doReturn(GetStoryResponse(story)).whenever(blogApi).getStory(any())
@@ -33,7 +29,6 @@ internal class StoryControllerTest : SeleniumTestSupport() {
         // OpenGraph
         assertElementAttribute("head title", "text", "${story.title} | Wutsi")
         assertElementAttribute("head meta[name='description']", "content", story.summary)
-        assertElementAttribute("head title", "text", "${story.title} | Wutsi")
         assertElementAttribute("head meta[property='og:title']", "content", story.title)
         assertElementAttribute("head meta[property='og:description']", "content", story.summary)
         assertElementAttribute("head meta[property='og:type']", "content", "article")
