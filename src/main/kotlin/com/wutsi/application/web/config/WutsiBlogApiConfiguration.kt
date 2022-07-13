@@ -1,37 +1,35 @@
 package com.wutsi.application.web.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.wutsi.application.shared.service.FeignAcceptLanguageInterceptor
+import com.wutsi.application.web.downstream.blog.client.WutsiBlogApi
+import com.wutsi.application.web.downstream.blog.client.WutsiBlogApiBuilder
+import com.wutsi.application.web.downstream.blog.client.WutsiBlogEnvironment
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
 import com.wutsi.platform.core.util.feign.Custom5XXErrorDecoder
-import com.wutsi.platform.security.Environment.PRODUCTION
-import com.wutsi.platform.security.Environment.SANDBOX
-import com.wutsi.platform.security.WutsiSecurityApi
-import com.wutsi.platform.security.WutsiSecurityApiBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
-import org.springframework.core.env.Profiles
 
 @Configuration
-public class SecurityApiConfiguration(
+class WutsiBlogApiConfiguration(
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
+    private val acceptLanguageInterceptor: FeignAcceptLanguageInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
     @Bean
-    fun securityApi(): WutsiSecurityApi =
-        WutsiSecurityApiBuilder().build(
+    fun blogApi(): WutsiBlogApi =
+        WutsiBlogApiBuilder().build(
             env = environment(),
             mapper = mapper,
             interceptors = listOf(
                 tracingRequestInterceptor,
+                acceptLanguageInterceptor
             ),
             errorDecoder = Custom5XXErrorDecoder()
         )
 
-    private fun environment(): com.wutsi.platform.security.Environment =
-        if (env.acceptsProfiles(Profiles.of("prod")))
-            PRODUCTION
-        else
-            SANDBOX
+    private fun environment(): WutsiBlogEnvironment =
+        WutsiBlogEnvironment.PRODUCTION
 }

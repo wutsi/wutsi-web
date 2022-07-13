@@ -3,9 +3,9 @@ package com.wutsi.application.web.config
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.service.FeignAcceptLanguageInterceptor
 import com.wutsi.application.web.service.FeignTenantIdRequestInterceptor
-import com.wutsi.application.web.service.WebTokenProvider
 import com.wutsi.ecommerce.catalog.WutsiCatalogApi
 import com.wutsi.ecommerce.catalog.WutsiCatalogApiBuilder
+import com.wutsi.platform.core.security.TokenProvider
 import com.wutsi.platform.core.security.feign.FeignAuthorizationRequestInterceptor
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
 import com.wutsi.platform.core.util.feign.Custom5XXErrorDecoder
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest
 
 @Configuration
 class CatalogApiConfiguration(
-    private val tokenProvider: WebTokenProvider,
+    private val tokenProvider: TokenProvider,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
     private val tenantIdRequestInterceptor: FeignTenantIdRequestInterceptor,
     private val mapper: ObjectMapper,

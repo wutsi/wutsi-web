@@ -1,6 +1,7 @@
 package com.wutsi.application.web.service
 
 import com.wutsi.application.shared.service.TenantIdProvider
+import com.wutsi.platform.core.security.TokenProvider
 import com.wutsi.platform.core.tracing.TracingContext
 import org.springframework.stereotype.Service
 import java.net.HttpURLConnection
@@ -8,7 +9,7 @@ import java.net.URL
 
 @Service
 class UrlConnectionProvider(
-    private val tokenProvider: WebTokenProvider,
+    private val tokenProvider: TokenProvider,
     private val traceContext: TracingContext,
     private val tenantIdProvider: TenantIdProvider
 ) {

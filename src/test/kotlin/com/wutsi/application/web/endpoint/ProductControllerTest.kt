@@ -44,6 +44,11 @@ internal class ProductControllerTest : SeleniumTestSupport() {
         assertElementAttribute("head meta[property='og:title']", "content", product.title)
         assertElementAttribute("head meta[property='og:description']", "content", product.summary)
         assertElementAttribute("head meta[property='og:type']", "content", "website")
+        assertElementAttribute(
+            "head meta[property='og:image']",
+            "content",
+            product.thumbnail?.url
+        )
 
         assertAppStoreLinksPresent()
     }

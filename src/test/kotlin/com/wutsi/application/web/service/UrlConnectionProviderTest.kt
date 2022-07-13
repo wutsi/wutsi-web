@@ -4,12 +4,13 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TenantIdProvider
+import com.wutsi.platform.core.security.TokenProvider
 import com.wutsi.platform.core.tracing.TracingContext
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal class UrlConnectionProviderTest {
-    private lateinit var tokenProvider: WebTokenProvider
+    private lateinit var tokenProvider: TokenProvider
     private lateinit var traceContext: TracingContext
     private lateinit var tenantIdProvider: TenantIdProvider
     private lateinit var provider: UrlConnectionProvider
