@@ -20,7 +20,7 @@ internal class StoryControllerTest : SeleniumTestSupport() {
         doReturn(GetStoryResponse(story)).whenever(blogApi).getStory(any())
 
         // WHEN
-        val link = url("/story/read?id=${story.id}")
+        val link = url("story/read?id=${story.id}")
         navigate(link)
 
         // THEN
