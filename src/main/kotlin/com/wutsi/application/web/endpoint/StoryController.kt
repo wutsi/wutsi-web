@@ -22,7 +22,7 @@ class StoryController(
         private val LOGGER = LoggerFactory.getLogger(StoryController::class.java)
     }
 
-    override fun pageId() = "page.story.ready"
+    override fun pageId() = "page.story.read"
 
     @GetMapping("/read")
     fun index(@RequestParam id: Long, model: Model): String {
