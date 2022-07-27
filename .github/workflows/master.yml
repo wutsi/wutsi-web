@@ -85,7 +85,6 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ job.status }}
-          SLACK_ICON: https://avatars.githubusercontent.com/u/23211?s=200&v=4
           SLACK_TITLE: wutsi-web-test
           SLACK_MESSAGE: Heroku Deployment in TEST
           MSG_MINIMAL: true
@@ -142,7 +141,6 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ job.status }}
-          SLACK_ICON: https://brand.heroku.com/static/media/heroku-logo-solid.ab0c1b46.svg
           SLACK_TITLE: wutsi-web-prod
           SLACK_MESSAGE: Heroku Deployment in PROD
           MSG_MINIMAL: true
