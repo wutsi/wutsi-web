@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: appbundle
-          path: target/
+          path: target/**
 
   #      - name: HerokuCLI
   #        run: |
@@ -110,7 +110,7 @@ jobs:
           heroku config:set --app ${HEROKU_APP} API_KEY=${API_KEY}
           heroku config:set --app ${HEROKU_APP} CLOUDAMQP_URL=${CLOUDAMQP_URL}
           heroku addons -a ${HEROKU_APP} | grep papertrail && echo 'addon: papertrail exists' ||  heroku addons:create papertrail -a ${HEROKU_APP}
-          heroku deploy:jar wutsi-web.jar --app ${HEROKU_APP}
+          heroku deploy:jar target/wutsi-web.jar --app ${HEROKU_APP}
       - name: Health check
         env:
           HEROKU_APP: wutsi-web-test
@@ -150,7 +150,7 @@ jobs:
 #          heroku config:set --app ${HEROKU_APP} API_KEY=${API_KEY}
 #          heroku config:set --app ${HEROKU_APP} CLOUDAMQP_URL=${CLOUDAMQP_URL}
 #          heroku addons -a ${HEROKU_APP} | grep papertrail && echo 'addon: papertrail exists' ||  heroku addons:create papertrail -a ${HEROKU_APP}
-#          heroku deploy:jar wutsi-web.jar --app ${HEROKU_APP}
+#          heroku deploy:jar terget/wutsi-web.jar --app ${HEROKU_APP}
 #      - name: Health check
 #        env:
 #          HEROKU_APP: wutsi-web-prod
