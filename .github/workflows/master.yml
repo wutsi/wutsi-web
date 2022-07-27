@@ -127,9 +127,9 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ job.status }}
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_TITLE: wutsi-web-test Deployment
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_ICON: https://brand.heroku.com/static/media/heroku-logo-solid.ab0c1b46.svg
+          SLACK_TITLE: wutsi-web-test
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   #  deploy-prod:
   #    runs-on: ubuntu-latest
